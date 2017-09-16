@@ -6,7 +6,7 @@ module.exports = {
         var menuItem = new MenuItem()
         menuItem.name = req.body.name
         menuItem.description = req.body.description
-        menuItem.price = req.body.description
+        menuItem.price = req.body.price
         menuItem.picture = req.body.picture
         // save the menu item
         menuItem.save(function() {
