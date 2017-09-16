@@ -58,8 +58,8 @@ button.remove-button{
 p.total{
   position: relative;
   display: inline-block;
-  float: right;
   font-weight: bold;
+  padding-top: 5px ;
   margin: 0 15px;
 }
 
@@ -75,7 +75,7 @@ button.confirm{
   font-weight: lighter;
   display: inline-block;
   float: right;
-  padding: 5px;
+  padding: 7px 10px;
 }
 
 
