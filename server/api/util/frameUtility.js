@@ -9,7 +9,7 @@ module.exports = {
             process.then(function (video) {
                 video.fnExtractFrameToJPG(output, {
                     frame_rate : 2,
-                    number : 10,
+                    number : 5,
                     file_name : 'my_frame_%t_%s'
                 }, function (error, files) {
                     if (!error)

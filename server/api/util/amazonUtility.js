@@ -27,17 +27,21 @@ module.exports = {
                 ACL: 'public-read'
             }
         }
-        var uploader = client.uploadDir(params);
+        var uploader = client.uploadDir(params)
+        var photos = []
         uploader.on('error', function (err) {
             console.error('Error uploading director:', err.stack)
             throw err.stack
         })
-        uploader.on('progress', function () {
-            console.log('Directory upload progress: ', uploader.progressAmount, uploader.progressTotal)
+        uploader.on('fileUploadEnd', function (localFilePath, s3Key) {
+            console.log('S3 Key: ', s3Key)
+            photos.push(s3Key);
         })
         uploader.on('end', function () {
-            console.log('Finished uploading directory')
-            return callback()
+            setTimeout(function() {
+                console.log('Finished uploading directory')
+                return callback({ photos: photos })
+            }, 3000)
         })
     }
 
