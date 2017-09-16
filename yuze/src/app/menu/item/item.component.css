@@ -4,11 +4,7 @@
   padding: 0;
   max-width: 275px;
 }
-.serve-agileinfo.two {
-  margin-top: 2%;
-}
 
-/* Common style */
 .grid figure {
   position: relative;
   float: left;
