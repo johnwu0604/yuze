@@ -16,6 +16,10 @@ var promise = require('bluebird')
 mongoose.Promise = promise
 mongoose.connect('mongodb://localhost/yuze', { useMongoClient: true } )
 
+// env
+var env = require('dotenv')
+env.config()
+
 // setup
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({'extended': 'true'}))
