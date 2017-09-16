@@ -1,13 +1,13 @@
 var ffmpeg = require('ffmpeg')
+var exec = require('child_process').exec
 
 module.exports = {
 
-    parseFrames: function(callback) {
+    parseFrames: function(file, output, callback) {
         try {
-            var process = new ffmpeg('uploads/video.mp4')
+            var process = new ffmpeg(file)
             process.then(function (video) {
-                console.log(video)
-                video.fnExtractFrameToJPG('uploads/frames', {
+                video.fnExtractFrameToJPG(output, {
                     frame_rate : 2,
                     number : 10,
                     file_name : 'my_frame_%t_%s'
@@ -23,6 +23,17 @@ module.exports = {
             console.log(e.code)
             console.log(e.msg)
         }
+    },
+
+    removeOldFrames: function(callback) {
+        exec('rm -rf uploads/frames', function (err, stdout, stderr) {
+            if (err) {
+                console.log(stderr)
+                throw (stderr)
+            }
+            console.log(stdout)
+            return callback()
+        })
     }
 
 }

@@ -1,14 +1,14 @@
 var request = require('request')
-var API_KEY = '77d70f482aaf4bcd99940c740abd778a'
-var GROUP_ID = '12345'
+var API_KEY = process.env.FACE_API_KEY
+var GROUP_ID = process.env.FACE_GROUP_ID
 
 module.exports = {
 
-    createPerson: function (id, callback) {
+    createPerson: function (name, callback) {
         request.post({
             url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/persons',
             body: {
-                name: id
+                name: name
             },
             json: true,
             headers: {
