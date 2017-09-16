@@ -2,14 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-
-import { AppComponent } from './app.component';
 import { MenuModule } from './menu/menu.module';
 import { LoginModule } from './login/login.module';
 
+import { AppComponent } from './app.component';
+
+
+import { RecordRTCComponent } from './record-rtc/record-rtc.component';
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RecordRTCComponent
   ],
   imports: [
     BrowserModule,
