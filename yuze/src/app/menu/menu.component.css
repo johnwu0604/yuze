@@ -26,6 +26,7 @@
 .grid figure img {
   display: block;
   width: 100%;
+  min-height: 100%;
 }
 
 .grid figure figcaption {
@@ -83,6 +84,8 @@ figure.slideIn_effect img {
   backface-visibility: hidden;
   top: -100%;
   bottom: -100%;
+  left: -100%;
+  right:-100%;
   margin: auto;
 }
 
