@@ -1,15 +1,14 @@
 
-.serve-agileinfo {
+.grid {
   display: inline-block;
-  padding: 0;
-  max-width: 275px;
+  width: 285px;
 }
 
 .grid figure {
   position: relative;
   float: left;
   overflow: hidden;
-  margin: 1% 1% 15px 1%;
+  margin: 1% 1% 5px 5px;
   background: #323232;
   text-align: center;
   cursor: pointer;
@@ -17,7 +16,7 @@
 
 .grid figure img {
   display: block;
-  max-width: 100%;
+  width: 100%;
 }
 
 .grid figure figcaption {
@@ -39,7 +38,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 90%;
+  width: 95%;
 }
 
 /* Anchor will cover the whole item by default */
@@ -61,6 +60,7 @@
 
 figure.slideIn_effect {
   background: #2f3238;
+  margin: auto;
   width:275px;
   height:275px;
 
@@ -125,7 +125,7 @@ p.item-description {
   text-align: center;
   padding: 7em 1.2em 1.2em 1.2em;
   font-size: 1em;
-  background-color: #fffff0;
+  background-color: pink;
   line-height: 1.35em;
   color:#777;
   font-weight: bolder;
