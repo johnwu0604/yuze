@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import * as RecordRTC from 'recordrtc';
+import { RequestOptions, Headers, Http, Response } from '@angular/http';
+// import {Observable} from 'rxjs/Rx';
+// import 'rxjs/Rx';
+
 // const RecordRTC = require('recordrtc/RecordRTC.min');
 
 @Component({
@@ -11,32 +15,31 @@ export class RecordRTCComponent implements AfterViewInit {
 
   private stream: MediaStream;
   private recordRTC: any;
-
   // @ViewChild('video') video;
 
-  constructor() {
+  constructor(private http: Http) {
     // Do stuff
   }
 
   ngAfterViewInit() {
-    // // set the initial state of the video
+    // set the initial state of the video
     // const video: HTMLVideoElement = this.video.nativeElement;
     // video.muted = false;
     // video.controls = true;
     // video.autoplay = false;
-    //
+
     //  TODO: start recording as soon as the page load
     this.startRecording();
     // wait 5 seconds, stop recording
     setTimeout(() => this.stopRecording(), 10000);
   }
 
-  // toggleControls() {
-  //   const video: HTMLVideoElement = this.video.nativeElement;
-  //   video.muted = !video.muted;
-  //   video.controls = !video.controls;
-  //   video.autoplay = !video.autoplay;
-  // }
+  toggleControls() {
+    // const video: HTMLVideoElement = this.video.nativeElement;
+    // video.muted = !video.muted;
+    // video.controls = !video.controls;
+    // video.autoplay = !video.autoplay;
+  }
 
   successCallback(stream: MediaStream) {
 
@@ -49,7 +52,7 @@ export class RecordRTCComponent implements AfterViewInit {
     this.stream = stream;
     this.recordRTC = RecordRTC(stream, options);
     this.recordRTC.startRecording();
-    //
+
     // const video: HTMLVideoElement = this.video.nativeElement;
     // video.src = window.URL.createObjectURL(stream);
     // this.toggleControls();
@@ -62,9 +65,29 @@ export class RecordRTCComponent implements AfterViewInit {
   processVideo(audioVideoWebMURL) {
     // const video: HTMLVideoElement = this.video.nativeElement;
     const recordRTC = this.recordRTC;
-    // video.src = audioVideoWebMURL;
-    // this.toggleControls();
+   //  video.src = audioVideoWebMURL;
+   // this.toggleControls();
     const recordedBlob = recordRTC.getBlob();
+    const file = new File([recordedBlob], 'filename.webm', {
+      type: 'video/webm'});
+
+    // TODO: http request
+    const formData: FormData = new FormData();
+    formData.append('video', file, file.name);
+
+    const headers = new Headers();
+    /** No need to include Content-Type in Angular 4 */
+    headers.append('Content-Type', 'multipart/form-data');
+    // headers.append('enctype', 'multipart/form-data');
+    headers.append('Accept', 'text/html');
+    const options = new RequestOptions({ headers: headers });
+    this.http.post(`${'http://192.168.100.1:5000/customer'}`, formData, options)
+      // .map((res: Response) => res.json())
+      // .catch(error => Observable.throw(error.json().error))
+      .subscribe(
+        testReadme => console.log(testReadme),
+        error => console.log(error)
+      );
     recordRTC.getDataURL(function (dataURL) { });
   }
 
@@ -93,6 +116,7 @@ export class RecordRTCComponent implements AfterViewInit {
   }
 
   download() {
+
     this.recordRTC.save('video.webm');
   }
 }
