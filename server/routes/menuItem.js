@@ -13,7 +13,7 @@ module.exports = function (app) {
     app.get('/menu-items', function(req, res) {
         menuItemController.getAllMenuItems(function(err, items) {
             if (err)
-                throw Error('EError occurred')
+                throw Error('Error occurred')
             res.send(items)
         })
     })
