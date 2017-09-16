@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 app.use(methodOverride())
 
-// route files
+// routes
 require('./routes/test')(app)
 
 // start server
