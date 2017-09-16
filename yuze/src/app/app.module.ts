@@ -9,9 +9,10 @@ import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { RecordRTCComponent } from './record-rtc/record-rtc.component';
 import { LoginComponent} from "./login/login.component";
+import { CheckoutComponent } from './checkout/checkout.component';
+
 
 import { routing } from './app.routing';
-import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
