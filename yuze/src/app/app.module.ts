@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 
 
 import { RecordRTCComponent } from './record-rtc/record-rtc.component';
+import {LoginComponent} from "./login/login.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RecordRTCComponent
+    RecordRTCComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
