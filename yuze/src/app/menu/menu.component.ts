@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from './menu.service';
 
 @Component({
   selector: 'menu',
@@ -6,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  constructor() { }
+  allMenuItems: any;
+
+  constructor(public menuService: MenuService) { }
 
   ngOnInit() {
+    this.getAllMenuItems();
   }
 
   changeStatus(event:Event):void {
@@ -19,12 +23,10 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  // onHeroChange(event:Event):void {
-  //   Hero hero = heros.firstWhere(
-  //
-  //   // Hero hero = heros[int.parse((event.target as SelectElement).value)];
-  //   selectedHero = hero;
-  //   selectedHeroChange.add(hero);
-  // }
-
+  getAllMenuItems(){
+    this.menuService.getAllMenuItems().then((res) => {
+      this.allMenuItems = res;
+      console.log(res);
+    })
+  }
 }
