@@ -5,6 +5,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { AppComponent } from './app.component';
 import { MenuModule } from './menu/menu.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MenuModule } from './menu/menu.module';
   imports: [
     BrowserModule,
     ButtonsModule.forRoot(),
-    MenuModule
+    MenuModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
