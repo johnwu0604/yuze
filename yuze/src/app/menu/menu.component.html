@@ -1,0 +1,21 @@
+<h1> Select your order  </h1>
+
+<section class="menu-item" *ngFor="let item of allMenuItems">
+  <div class="grid">
+    <div class="serve-agileinfo">
+      <div class="menu-item">
+        <figure class="slideIn_effect">
+          <img src={{item.picture}} alt="../../assets/noImage.png"/>
+          <figcaption>
+            <p> {{ item.description }} </p>
+          </figcaption>
+        </figure>
+
+        <p class="item-description">
+          {{item.name}}
+          <button type="button" class = "btn btn-default btn-sm button" (click)="changeStatus($event)"> ${{item.price}} </button>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

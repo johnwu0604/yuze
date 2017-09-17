@@ -1,0 +1,12 @@
+img#logo{
+  display: block;
+  width: 350px;
+  margin: 50px auto;
+}
+
+button{
+  margin: 10px 50px 0;
+  padding: 2% 2%;
+  color: white;
+  background-color: #72062B;
+}
