@@ -63,6 +63,29 @@ function storeInDatabase(req, callback) {
     })
 }
 
+function uploadFile(callback) {
+    AmazonUtility.uploadFile('uploads/image.jpg', 'faces/detect/image.jpg', function() {
+        return callback()
+    })
+}
+
+function identifyFace(callback) {
+    var url = 'https://s3.ca-central-1.amazonaws.com/yuze-dev-canada/faces/detect/image.jpg'
+    MicrosoftUtility.detectFace(url, function(result) {
+        MicrosoftUtility.identifyFace(result[0].faceId, function(result) {
+            var candidates = result[0].candidates
+            var customerExists = false
+            if (candidates.length == 1) {
+                customerExists = true
+            }
+            return callback({
+                customerExists: customerExists,
+                candidates: candidates
+            })
+        })
+    })
+}
+
 module.exports = {
 
     createCustomer: function(req, callback) {
@@ -106,6 +129,14 @@ module.exports = {
             }
         ], function () {
             return callback({ customerId: customerId })
+        })
+    },
+
+    searchCustomer: function(callback) {
+        uploadFile(function() {
+            identifyFace( function(result) {
+                return callback(result)
+            })
         })
     },
 

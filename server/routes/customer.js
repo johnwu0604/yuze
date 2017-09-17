@@ -1,6 +1,6 @@
 var fs = require('fs');
 var multer = require('multer');
-var storage = multer.diskStorage({
+var storageVideo = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/')
     },
@@ -8,16 +8,32 @@ var storage = multer.diskStorage({
         cb(null, 'video.mp4')
     }
 });
-var upload = multer({ storage: storage });
+var uploadVideo = multer({ storage: storageVideo });
+
+var storageImage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, 'image.jpg')
+    }
+});
+var uploadImage = multer({ storage: storageImage });
 
 var customerController = require('../api/controller/customerController')
 
 module.exports = function (app) {
 
-    app.post('/create-customer', upload.single('video'), function (req, res) {
+    app.post('/create-customer', uploadVideo.single('video'), function (req, res) {
        customerController.createCustomer(req, function(result) {
            res.send(result)
        })
+    })
+
+    app.post('/search-customer', uploadImage.single('image'), function (req, res) {
+        customerController.searchCustomer(function(result) {
+            res.send(result)
+        })
     })
 
     app.post('/customer', function (req, res) {

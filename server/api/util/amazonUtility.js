@@ -43,6 +43,25 @@ module.exports = {
                 return callback({ photos: photos })
             }, 3000)
         })
+    },
+
+    uploadFile: function (localFile, remoteFile, callback) {
+        var params = {
+            localFile: localFile,
+            s3Params: {
+                Bucket: process.env.AWS_BUCKET,
+                Key: remoteFile,
+                ACL: 'public-read'
+            },
+        }
+        var uploader = client.uploadFile(params)
+        uploader.on('error', function(err) {
+            console.error("Unable to upload:", err.stack)
+        })
+        uploader.on('end', function() {
+            console.log("Done uploading")
+            return callback()
+        })
     }
 
 }
