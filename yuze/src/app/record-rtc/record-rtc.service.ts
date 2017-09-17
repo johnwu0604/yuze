@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RecordRtcService {
-  private url = 'http://localhost:5000/customer';
+  private url = 'http://localhost:5000/create-customer';
   constructor(private http: Http) {
   }
 
