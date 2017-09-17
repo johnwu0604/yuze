@@ -23,3 +23,10 @@ fabric.properties
 
 # Node Modules
 node_modules/*
+
+# Environment variables
+.env
+
+# Cached Files
+uploads/*
+uploads/*/*
