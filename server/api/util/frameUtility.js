@@ -3,6 +3,13 @@ var exec = require('child_process').exec
 
 module.exports = {
 
+    /**
+     * Parses the frames in a video
+     *
+     * @param file
+     * @param output
+     * @param callback
+     */
     parseFrames: function(file, output, callback) {
         try {
             var process = new ffmpeg(file)
@@ -25,6 +32,11 @@ module.exports = {
         }
     },
 
+    /**
+     * Removes all the cached frames
+     *
+     * @param callback
+     */
     removeOldFrames: function(callback) {
         exec('rm -rf uploads/frames', function (err, stdout, stderr) {
             if (err) {

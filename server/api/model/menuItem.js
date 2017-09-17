@@ -1,3 +1,4 @@
+// Schema for a menu item
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 

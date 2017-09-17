@@ -4,6 +4,12 @@ var GROUP_ID = process.env.FACE_GROUP_ID
 
 module.exports = {
 
+    /**
+     * Creates a new person group in cognitive services
+     *
+     * @param name
+     * @param callback
+     */
     createPerson: function (name, callback) {
         request.post({
             url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/persons',
@@ -19,6 +25,13 @@ module.exports = {
         })
     },
 
+    /**
+     * Adds a new face to a person in cognitive services
+     *
+     * @param id
+     * @param url
+     * @param callback
+     */
     addFace: function (id, url, callback) {
         request.post({
             url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/persons/' + id + '/persistedFaces',
@@ -34,6 +47,11 @@ module.exports = {
         })
     },
 
+    /**
+     * Trains the group data in cognitive services
+     *
+     * @param callback
+     */
     trainPersonGroup: function(callback) {
         request.post({
             url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/train',
@@ -45,6 +63,11 @@ module.exports = {
         })
     },
 
+    /**
+     * Retrieves the current processing status of the training of face data in cognitive services
+     *
+     * @param callback
+     */
     getTrainingStatus: function(callback) {
         request.post({
             url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/training',
@@ -56,6 +79,12 @@ module.exports = {
         })
     },
 
+    /**
+     * Detects faces in a picture using cognitive services
+     *
+     * @param url
+     * @param callback
+     */
     detectFace: function(url, callback) {
         request.post({
             url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false',
@@ -71,6 +100,12 @@ module.exports = {
         })
     },
 
+    /**
+     * Identifies a face using cognitive services
+     *
+     * @param id
+     * @param callback
+     */
     identifyFace: function(id, callback) {
         request.post({
             url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/identify',

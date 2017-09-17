@@ -1,3 +1,4 @@
+// Schema for a customer
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
