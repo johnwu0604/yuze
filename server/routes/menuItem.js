@@ -2,6 +2,9 @@ var menuItemController = require('../api/controller/menuItemController')
 
 module.exports = function (app) {
 
+    /**
+     * Post request to add a menu item
+     */
     app.post('/menu-item', function (req, res) {
         menuItemController.addMenuItem(req, function(err) {
             if (err)
@@ -10,6 +13,9 @@ module.exports = function (app) {
         })
     })
 
+    /**
+     * Retrieve all the menu items
+     */
     app.get('/menu-items', function(req, res) {
         menuItemController.getAllMenuItems(function(err, items) {
             if (err)
@@ -18,6 +24,9 @@ module.exports = function (app) {
         })
     })
 
+    /**
+     * Retrieve a menu item by id
+     */
     app.get('/menu-item/:id', function(req, res) {
         menuItemController.getMenuItemById(req, function(err, item) {
             if (err)
@@ -26,6 +35,9 @@ module.exports = function (app) {
         })
     })
 
+    /**
+     * Delete a menu item by id
+     */
     app.delete('/menu-item/:id', function(req, res) {
         menuItemController.deleteMenuItem(req, function (err) {
             if (err)

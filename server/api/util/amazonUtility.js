@@ -45,6 +45,13 @@ module.exports = {
         })
     },
 
+    /**
+     * Uploads a file from the local machine to amazon S3
+     *
+     * @param localFile
+     * @param remoteFile
+     * @param callback
+     */
     uploadFile: function (localFile, remoteFile, callback) {
         var params = {
             localFile: localFile,
