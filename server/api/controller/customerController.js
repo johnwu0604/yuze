@@ -52,6 +52,17 @@ function trainData(callback) {
     })
 }
 
+function storeInDatabase(req, callback) {
+    var customer = new Customer()
+    customer._id = customerId
+    customer.name = req.body.name
+    customer.previous_order = req.body.previous_order
+    // save the menu item
+    customer.save(function() {
+        return callback()
+    })
+}
+
 module.exports = {
 
     createCustomer: function(req, callback) {
@@ -85,6 +96,11 @@ module.exports = {
             },
             function (callback) {
                 trainData( function() {
+                    return callback()
+                })
+            },
+            function (callback) {
+                storeInDatabase(req, function() {
                     return callback()
                 })
             }
