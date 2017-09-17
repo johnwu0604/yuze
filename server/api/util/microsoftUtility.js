@@ -12,7 +12,7 @@ module.exports = {
      */
     createPerson: function (name, callback) {
         request.post({
-            url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/persons',
+            url:'https://eastus2.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/persons',
             body: {
                 name: name
             },
@@ -34,7 +34,7 @@ module.exports = {
      */
     addFace: function (id, url, callback) {
         request.post({
-            url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/persons/' + id + '/persistedFaces',
+            url:'https://eastus2.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/persons/' + id + '/persistedFaces',
             body: {
                 url: url
             },
@@ -54,7 +54,7 @@ module.exports = {
      */
     trainPersonGroup: function(callback) {
         request.post({
-            url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/train',
+            url:'https://eastus2.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/train',
             headers: {
                 'Ocp-Apim-Subscription-Key': API_KEY
             }
@@ -70,7 +70,7 @@ module.exports = {
      */
     getTrainingStatus: function(callback) {
         request.post({
-            url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/training',
+            url:'https://eastus2.api.cognitive.microsoft.com/face/v1.0/persongroups/' + GROUP_ID + '/training',
             headers: {
                 'Ocp-Apim-Subscription-Key': API_KEY
             }
@@ -87,7 +87,7 @@ module.exports = {
      */
     detectFace: function(url, callback) {
         request.post({
-            url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false',
+            url:'https://eastus2.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false',
             body: {
                 url: url
             },
@@ -108,7 +108,7 @@ module.exports = {
      */
     identifyFace: function(id, callback) {
         request.post({
-            url:'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/identify',
+            url:'https://eastus2.api.cognitive.microsoft.com/face/v1.0/identify',
             body: {
                 faceIds: [id],
                 personGroupId: GROUP_ID,

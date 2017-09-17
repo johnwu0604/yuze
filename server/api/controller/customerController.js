@@ -3,6 +3,8 @@ var AmazonUtility = require('../util/amazonUtility')
 var MicrosoftUtility = require('../util/microsoftUtility')
 var async = require('async')
 var Customer = require('../model/customer')
+var UUID = require('uuid/v1')
+var uuid = ''
 
 var uploadedPhotos = []
 var customerId = ''
@@ -105,7 +107,8 @@ function storeInDatabase(req, callback) {
  * @param callback
  */
 function uploadFile(callback) {
-    AmazonUtility.uploadFile('uploads/image.jpg', 'faces/detect/image.jpg', function() {
+    uuid = UUID()
+    AmazonUtility.uploadFile('uploads/image.jpg', 'faces/detect/' + uuid + '.jpg', function() {
         return callback()
     })
 }
@@ -116,7 +119,7 @@ function uploadFile(callback) {
  * @param callback
  */
 function identifyFace(callback) {
-    var url = 'https://s3.ca-central-1.amazonaws.com/yuze-dev-canada/faces/detect/image.jpg'
+    var url = 'https://s3.ca-central-1.amazonaws.com/yuze-dev-canada/faces/detect/'+ uuid +'.jpg'
     MicrosoftUtility.detectFace(url, function(result) {
         MicrosoftUtility.identifyFace(result[0].faceId, function(result) {
             var candidates = result[0].candidates
