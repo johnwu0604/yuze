@@ -33,6 +33,35 @@ module.exports = {
     },
 
     /**
+     * Parses a single frame from the video
+     *
+     * @param file
+     * @param output
+     * @param callback
+     */
+    parseSingleFrame: function(file, output, callback) {
+        try {
+            var process = new ffmpeg(file)
+            process.then(function (video) {
+                video.fnExtractFrameToJPG(output, {
+                    frame_rate : 1,
+                    number : 1,
+                    file_name : 'image.jpg'
+                }, function (error, files) {
+                    if (!error)
+                        console.log('Frames: ' + files)
+                    return callback()
+                })
+            }, function (err) {
+                console.log('Error: ' + err)
+            })
+        } catch (e) {
+            console.log(e.code)
+            console.log(e.msg)
+        }
+    },
+
+    /**
      * Removes all the cached frames
      *
      * @param callback

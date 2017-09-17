@@ -108,7 +108,7 @@ function storeInDatabase(req, callback) {
  */
 function uploadFile(callback) {
     uuid = UUID()
-    AmazonUtility.uploadFile('uploads/image.jpg', 'faces/detect/' + uuid + '.jpg', function() {
+    AmazonUtility.uploadFile('uploads/image_1.jpg', 'faces/detect/' + uuid + '.jpg', function() {
         return callback()
     })
 }
@@ -193,9 +193,11 @@ module.exports = {
      * @param callback
      */
     searchCustomer: function(callback) {
-        uploadFile(function() {
-            identifyFace( function(result) {
-                return callback(result)
+        FrameUtility.parseSingleFrame('uploads/snapshot.mp4', 'uploads', function() {
+            uploadFile(function() {
+                identifyFace( function(result) {
+                    return callback(result)
+                })
             })
         })
     },
