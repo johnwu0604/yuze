@@ -59,7 +59,7 @@ module.exports = {
                 Bucket: process.env.AWS_BUCKET,
                 Key: remoteFile,
                 ACL: 'public-read'
-            },
+            }
         }
         var uploader = client.uploadFile(params)
         uploader.on('error', function(err) {
