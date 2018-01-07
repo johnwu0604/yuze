@@ -22,9 +22,8 @@ env.config()
 
 // setup
 app.use(morgan('dev'))
-app.use(bodyParser.urlencoded({'extended': 'true'}))
-app.use(bodyParser.json())
-app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
+app.use(bodyParser.urlencoded({'extended': 'true', limit: '500mb', parameterLimit: 1000000}))
+app.use(bodyParser.json({ type: 'application/vnd.api+json',limit: '500mb' }))
 app.use(methodOverride())
 
 // routes

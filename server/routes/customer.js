@@ -26,6 +26,13 @@ module.exports = function (app) {
 
     /**
      * Creates a new customer given their video footage and menu order
+     *
+     * Request JSON Example
+     * {
+     *  'video': <VIDEO FILE>,
+     *  'name': 'Tiffany'
+     * }
+     *
      */
     app.post('/create-customer', uploadVideo.single('video'), function (req, res) {
        customerController.createCustomer(req, function(result) {
@@ -35,6 +42,12 @@ module.exports = function (app) {
 
     /**
      * Queries for an existing customer
+     *
+     * Request JSON Example
+     * {
+     *  'snapshot': <PHOTO FILE>,
+     * }
+     *
      */
     app.post('/search-customer', uploadSnapshot.single('snapshot'), function (req, res) {
         customerController.searchCustomer(function(result) {
@@ -44,6 +57,7 @@ module.exports = function (app) {
 
     /**
      * Creates a new customer
+     *
      */
     app.post('/customer', function (req, res) {
         customerController.addCustomer(req, function(err) {
